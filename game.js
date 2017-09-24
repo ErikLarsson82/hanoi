@@ -16,12 +16,13 @@ hanoi(3, "Src", "Aux", "Dst")
 
 
 //Asyncronous version
-let canvas, ctx, discs
+const animSpeed = 1
 const pos = {
     "Src": 0,
     "Aux": 100,
     "Dst": 200,
 }
+let canvas, ctx, discs
 
 function asyncHanoi(disc, src, aux, dst, anim) {
     if (disc <= 0) return Promise.resolve()
@@ -38,7 +39,7 @@ function asyncHanoi(disc, src, aux, dst, anim) {
 }
 
 function animationLib(params, x, callback) {
-    TweenLite.to(discs[params.disc-1], 0.1, { x: x, onUpdate:redraw, onComplete: callback })
+    TweenLite.to(discs[params.disc-1], animSpeed, { x: x, onUpdate:redraw, onComplete: callback })
 }
 
 function init(amount) {
